@@ -26,7 +26,7 @@ server.use(express.json());
 server.use(helmet());
 server.use(cors());
 
-server.use("/api/users");
+// server.use("/api/users");
 server.use("api/potlucks", potlucksRouter);
 
 server.get("/api/users", async (req, res) => {

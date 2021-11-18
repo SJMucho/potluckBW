@@ -1,7 +1,7 @@
 const db = require("../../data/db-config");
 
 function getPotlucks() {
-  return db("users").where("");
+  return db("potlucks");
 }
 
 module.exports = {
