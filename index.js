@@ -1,12 +1,20 @@
 require("dotenv").config();
 
-const server = require("./api/server");
-
-const port = process.env.PORT;
-
-server.listen(port, () => {
-  console.log("listening on " + port);
+app.listen(process.env.PORT || 3000, function () {
+  console.log(
+    "Express server listening on port %d in %s mode",
+    this.address().port,
+    app.settings.env
+  );
 });
+
+// const server = require("./api/server");
+
+// const port = process.env.PORT;
+
+// server.listen(port, () => {
+//   console.log("listening on " + port);
+// });
 
 // require("dotenv").config();
 // const server = require("./api/server");
