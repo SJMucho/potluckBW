@@ -10,6 +10,13 @@ exports.up = async (knex) => {
     tbl.increments("item_id");
     tbl.string("item_name", 128).notNullable().unique();
     tbl.string("item_type").notNullable();
+    tbl
+      .integer("user_id")
+      .unsigned()
+      .notNullable()
+      .references("user_id")
+      .inTable("users")
+      .onDelete("CASCADE");
   });
 
   await knex.schema.createTable("organizers", (tbl) => {
