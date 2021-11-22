@@ -12,7 +12,7 @@
     "databaseh": "heroku pg:psql -a potluckbuildweek",
     "seedh": "heroku run knex seed:run -a potluckbuildweek",
     "test": "cross-env NODE_ENV=testing jest --verbose --runInBand",
-    "deploy": "git push heroku main"
+    "deploy": "git push her migrateku main"
   },
   "engines": {
     "node": "16.13.0"
