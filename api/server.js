@@ -25,12 +25,14 @@ async function insertUser(user) {
 }
 
 // const usersRouter = require("../users/users-router");
-// const potlucksRouter = require(".../potlucks/potlucks-router");
+const potlucksRouter = require("./auth/potlucks/potlucks-router");
 
 const server = express();
 server.use(express.json());
 server.use(helmet());
 server.use(cors());
+
+server.use("/api/potlucks", potlucksRouter);
 
 server.get("/api/users", async (req, res) => {
   res.json(await getAllUsers());
