@@ -13,25 +13,34 @@ router.get("/:id", restricted(), async (req, res, next) => {
   }
 });
 
-router.put("/:id/potlucks/:potlucksID");
-try {
-  const potluck = await Potlucks.findById(req.parama.potlucksID);
+router.put(
+  "/:id/potlucks/:potlucksID",
+  restricted(),
+  async (req, res, next) => {
+    try {
+      const potluck = await Potlucks.findById(req.params.howtoID);
 
-  if (!potluck) {
-    return res.status(404).json({
-      message: "Potluck doesn't exist",
-    });
+      if (!potluck) {
+        return res.status(404).json({
+          message: "Can't find potluck",
+        });
+      }
+
+      const potluckData = {
+        title: req.body.title,
+        description: req.body.description,
+      };
+      const updatePotluck = await Potluck.update(
+        req.params.howtoID,
+        potluckData
+      );
+
+      return res.status(200).json(updatePotluck);
+    } catch (err) {
+      next(err);
+    }
   }
-  const potluckData = { event_name: req.body.event_name, date: req.body.date };
-  const updatePotluck = await Potlucks.update(
-    req.params.potlucksID,
-    potluckData
-  );
-
-  return res.status(200).json(updatePotluck);
-} catch (err) {
-  next(err);
-}
+);
 
 router.post("/:id", restricted(), async (req, res, next) => {
   try {
